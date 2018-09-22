@@ -10,15 +10,15 @@
     "node modules",
     "npm"
   ],
-  "author": "Maxime Thirouin",
+  "author": "Daniel Staver",
   "license": "MIT",
-  "repository": "https://github.com/postcss/postcss-import.git",
+  "repository": "https://github.com/dstaver/postcss-theme-variables.git",
   "files": [
     "index.js",
     "lib"
   ],
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   },
   "dependencies": {
     "postcss": "^7.0.1",

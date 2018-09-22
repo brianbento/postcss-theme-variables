@@ -1,0 +1,46 @@
+:root {
+  --color-primary-ref: var(--color-primary);
+  --color-secondary-ref: var(--color-secondary);
+  --color-primary: red;
+  --color-secondary: orange;
+  --color-secondary-ref-ref: var(--color-secondary-ref);
+}
+
+.theme-blue {
+  --color-primary: deepskyblue;
+  --color-secondary: lightskyblue;
+}
+
+.theme-green {
+  --color-primary: limegreen;
+  --color-secondary: greenyellow;
+}
+
+.primary {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.primary-ref {
+  font-weight: bold;
+  color: var(--color-primary-ref);
+}
+
+.secondary {
+  font-weight: bold;
+  color: var(--color-secondary);
+}
+
+.secondary-ref {
+  font-weight: bold;
+  color: var(--color-secondary-ref);
+}
+
+.secondary-ref-ref {
+  font-weight: bold;
+  color: var(--color-secondary-ref-ref);
+}
+
+.rule-without-vars {
+  font-weight: bold;
+}
