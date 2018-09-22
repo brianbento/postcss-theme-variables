@@ -1,5 +1,7 @@
-import test from "ava"
+const test = require('ava');
 
-test("Dummy test", t => {
-  t.is(!!1, true)
-})
+const themeProperties = require('../');
+
+test('Dummy test', t => {
+  t.is(!!1, true);
+});
