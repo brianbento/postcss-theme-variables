@@ -1,4 +1,6 @@
 // const postcss = require('postcss');
+const testFixture = require('./test/testfixture');
+
 const themeProperties = require('./index');
 
 const invalidThemeSelector = {
@@ -41,3 +43,25 @@ Object.entries(invalidThemeSelectors).forEach(([msg, themeSelectors]) =>
     ).toThrow();
   })
 );
+test('Blue theme', async () =>
+  expect(
+    await testFixture(
+      './test/fixtures/themes.css',
+      './test/fixtures/theme-blue.expected.css',
+      {
+        themeSelector: '.theme-blue',
+        themeSelectors: ['.theme-blue', '.theme-green'],
+      }
+    )
+  ).toBe(true));
+test('Green theme', async () =>
+  expect(
+    await testFixture(
+      './test/fixtures/themes.css',
+      './test/fixtures/theme-green.expected.css',
+      {
+        themeSelector: '.theme-green',
+        themeSelectors: ['.theme-blue', '.theme-green'],
+      }
+    )
+  ).toBe(true));
