@@ -1,7 +1,8 @@
 const test = require('ava');
+const postcss = require('postcss');
 
 const themeProperties = require('../');
 
-test('Dummy test', t => {
-  t.is(!!1, true);
+test('Function arguments', t => {
+  t.throws(themeProperties(), Error);
 });

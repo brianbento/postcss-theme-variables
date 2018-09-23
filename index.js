@@ -5,27 +5,41 @@ function themeProperties(options = {}) {
   if (!themeSelector || typeof themeSelector !== 'string') {
     throw new Error('themeSelectors must be a non empty string');
   }
+  if (
+    !Array.isArray(themeSelectors) ||
+    !themeSelectors.length ||
+    themeSelectors.find(selector => typeof selector !== 'string')
+  ) {
+    throw new Error('themeSelectors must be an non empty array of strings');
+  }
 
   const themesToRemove = themeSelectors.filter(str => str !== themeSelector);
 
   const isRemovableTheme = new RegExp(
     `^(${escapeSelector(themesToRemove.join('|'))})`
   );
-  const isTheme = new RegExp(
-    `^(:root|${escapeSelector(themeSelectors.join('|'))})$`
-  );
 
   return function(css) {
     let rootRule;
     let themeRule;
-    css.walkRules(isTheme, rule => {
-      if (rule.selector === ':root') {
+    css.walkRules(rule => {
+      // The first :root rule found is expected to contain all property definitions
+      if (rule.selector === ':root' && !rootRule) {
         rootRule = rule;
       } else if (rule.selector === themeSelector) {
         themeRule = rule;
         rule.walkDecls(/^--/, decl => rootRule.append(decl));
       } else if (isRemovableTheme.test(rule.selector)) {
         rule.remove();
+      } else {
+        rule.walkDecls(decl => {
+          if (!/var\(/.test(decl.value)) {
+            decl.remove();
+          }
+        });
+        if (!rule.nodes.length) {
+          rule.remove();
+        }
       }
     });
     themeRule.remove();
