@@ -1,15 +1,15 @@
 const postcss = require('postcss');
 
+const helpers = require('./lib/helpers');
+
+module.exports = postcss.plugin('postcss-theme-properties', themeProperties);
+
 function themeProperties(options = {}) {
   const { themeSelector, themeSelectors } = options;
-  if (!themeSelector || typeof themeSelector !== 'string') {
+  if (!helpers.validateSelector(themeSelector)) {
     throw new Error('themeSelectors must be a non empty string');
   }
-  if (
-    !Array.isArray(themeSelectors) ||
-    !themeSelectors.length ||
-    themeSelectors.find(selector => typeof selector !== 'string')
-  ) {
+  if (!helpers.validateSelectors(themeSelectors)) {
     throw new Error('themeSelectors must be an non empty array of strings');
   }
 
@@ -42,12 +42,13 @@ function themeProperties(options = {}) {
         }
       }
     });
-    themeRule.remove();
+    if (themeRule) {
+      // @ts-ignore
+      themeRule.remove();
+    }
   };
 }
 
 function escapeSelector(selector) {
   return selector.replace('.', '\\.');
 }
-
-module.exports = postcss.plugin('postcss-theme-properties', themeProperties);
