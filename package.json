@@ -1,5 +1,5 @@
 {
-  "name": "postcss-theme-properties",
+  "name": "@dstaver/postcss-theme-properties",
   "version": "0.1.0",
   "description": "PostCSS plugin to move CSS custom properties for a theme to :root before processing with postcss-custom-properties",
   "keywords": [
