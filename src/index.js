@@ -1,6 +1,6 @@
 const postcss = require('postcss');
 
-const helpers = require('./lib/helpers');
+const helpers = require('./helpers');
 
 module.exports = postcss.plugin('postcss-theme-properties', themeProperties);
 

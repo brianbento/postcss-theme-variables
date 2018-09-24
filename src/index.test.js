@@ -1,5 +1,5 @@
 // const postcss = require('postcss');
-const testFixture = require('./test/testfixture');
+const testFixture = require('../test/testfixture');
 
 const themeProperties = require('./index');
 

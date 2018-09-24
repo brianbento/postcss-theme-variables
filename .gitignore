@@ -1,6 +1,7 @@
 # Test output
 test/fixtures/*.actual.css
 
+dist
 .DS_store
 
 # Logs

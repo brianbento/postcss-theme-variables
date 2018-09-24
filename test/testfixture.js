@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 const postcss = require('postcss');
 const postcssCustomProperties = require('postcss-custom-properties');
 
-const themeProperties = require('../index');
+const themeProperties = require('../src');
 
 module.exports = testFixture;
 async function testFixture(cssPath, expectedCssPath, pluginOptions) {

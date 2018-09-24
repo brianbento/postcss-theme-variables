@@ -1,29 +1,39 @@
 {
-  "name": "postcss-import",
-  "version": "12.0.0",
-  "description": "PostCSS plugin to import CSS files",
+  "name": "postcss-theme-properties",
+  "version": "0.1.0",
+  "description": "PostCSS plugin to move CSS custom properties for a theme to :root before processing with postcss-custom-properties",
   "keywords": [
     "css",
+    "themes",
     "postcss",
     "postcss-plugin",
-    "import",
     "node modules",
     "npm"
   ],
   "author": "Daniel Staver",
   "license": "MIT",
   "repository": "https://github.com/dstaver/postcss-theme-variables.git",
+  "main": "dist/index.js",
   "files": [
-    "index.js",
-    "lib"
+    "dist/**/*"
   ],
   "engines": {
     "node": ">=7.6.0"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist/*",
+    "build": "babel src --out-dir dist --ignore \"src/**/*.test.js\"",
+    "ci": "eslint . && jest",
+    "lint": "eslint . --fix",
+    "test": "jest"
   },
   "dependencies": {
     "postcss": "^7.0.1"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
     "eslint": "^5.0.0",
     "eslint-config-i-am-meticulous": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
@@ -31,11 +41,7 @@
     "eslint-plugin-prettier": "^2.2.0",
     "jest": "^23.6.0",
     "postcss-custom-properties": "^8.0.5",
-    "prettier": "~1.14.0"
-  },
-  "scripts": {
-    "ci": "eslint . && jest",
-    "lint": "eslint . --fix",
-    "test": "jest"
+    "prettier": "~1.14.0",
+    "rimraf": "^2.6.2"
   }
 }
