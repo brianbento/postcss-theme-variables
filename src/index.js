@@ -12,6 +12,10 @@ function themeProperties(options = {}) {
   if (!helpers.validateSelectors(themeSelectors)) {
     throw new Error('themeSelectors must be an non empty array of strings');
   }
+  
+  if(typeof keepNonThemed !== 'boolean') {
+    throw new Error('keepNonThemed must be a boolean value');
+  }
 
   const themesToRemove = themeSelectors.filter(str => str !== themeSelector);
 
