@@ -5,7 +5,7 @@ const helpers = require('./helpers');
 module.exports = postcss.plugin('postcss-theme-properties', themeProperties);
 
 function themeProperties(options = {}) {
-  const { themeSelector, themeSelectors } = options;
+  const { themeSelector, themeSelectors, keepNonThemed = false } = options;
   if (!helpers.validateSelector(themeSelector)) {
     throw new Error('themeSelectors must be a non empty string');
   }
@@ -32,11 +32,13 @@ function themeProperties(options = {}) {
       } else if (isRemovableTheme.test(rule.selector)) {
         rule.remove();
       } else {
-        rule.walkDecls(decl => {
-          if (!/var\(/.test(decl.value)) {
-            decl.remove();
-          }
-        });
+        if(!keepNonThemed) {
+          rule.walkDecls(decl => {
+            if (!/var\(/.test(decl.value)) {
+              decl.remove();
+            }
+          });
+        }
         if (!rule.nodes.length) {
           rule.remove();
         }
